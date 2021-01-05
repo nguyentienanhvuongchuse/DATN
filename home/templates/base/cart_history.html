@@ -1,0 +1,41 @@
+{% extends "base/index.html"%}
+{% block title %}Lịch sử{% endblock title %}
+{% block content %}
+<div class="col-lg-9 box-booking">
+
+    <div class="row status">
+        <div class="col-lg-6 status-yard">
+            <a href="{% url "cart"%}">Đang xử lý</a>
+        </div>
+        <div class="col-lg-6 status-yard">
+            <a href="{% url "history"%}"><b><u>Lịch sử</u></b></a>
+        </div>
+    </div>
+
+    <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Sân bóng</th>
+      <th scope="col">Sân</th>
+      <th scope="col">Thời gian</th>
+      <th scope="col">Giá tiền</th>
+      <th scope="col">Trạng thái</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for cart in cart%}
+    <tr>
+      <th scope="row">{{cart.name}}</th>
+      <td>{{cart.yard}}</td>
+      <td>{{cart.time}}</td>
+      <td>{{cart.cost}}</td>
+      <td>
+        {{cart.status}}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+</div>
+{% endblock content %}

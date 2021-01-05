@@ -1,0 +1,21 @@
+{% extends "base/index.html" %}
+{% block title %} Sân mới {% endblock %}
+
+{% block content%}
+    <div class="col-lg-9 content">
+        <form method="POST">
+            <br>
+            {% csrf_token %}
+            <div>
+                <label>Mã sân</label>
+                {{form.code}}
+            </div>
+            <div>
+                <label>Loại sân</label>
+                {{form.type}}
+            </div>
+            <br>
+            <input type="submit" class="btn btn-primary">
+        </form>
+    </div>
+{% endblock %}

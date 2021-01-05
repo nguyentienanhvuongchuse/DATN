@@ -1,0 +1,33 @@
+{% extends "base/index.html"%}
+{% block title %}Thông tin cá nhân{% endblock title %}
+{% block content %}
+    <div class="col-lg-9 box-booking">
+            <form method="POST" id="signup_form">
+        {% csrf_token %}
+        <h3 class="title-header">Thông tin cá nhân</h3>
+        <div class="form-group">
+            <div class="form-wrapper">
+                <label for="">Tên</label>
+                <input type="text" class="form-control" name="firstname" id="firstname" value="{{user.first_name}}">
+            </div>
+            <div class="form-wrapper">
+                <label for="">Họ</label>
+                <input type="text" class="form-control" name="lastname" value="{{user.last_name}}">
+            </div>
+        </div>
+        <div class="form-wrapper">
+            <label for="">Email</label>
+            <input type="email" class="form-control" name="email" value="{{user.email}}">
+        </div>
+        <div class="form-wrapper">
+            <label for="">Số điện thoại</label>
+            <input type="text" class="form-control" name="phone" value={{detail.phone}}>
+        </div>
+        <div class="form-wrapper">
+            <label>Địa chỉ</label>
+            <input type="text" class="form-control" name="address" value="{{detail.address}}">
+        </div>
+        <button type="submit" class="signup">Lưu thay đổi</button>
+    </form>
+    </div>
+{% endblock content %}

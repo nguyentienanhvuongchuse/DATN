@@ -1,0 +1,42 @@
+{% extends "base/index.html"%}
+{% block title %}Giỏ hàng{% endblock title %}
+{% block content %}
+<div class="col-lg-9 box-booking">
+
+    <div class="row status">
+        <div class="col-lg-6 status-yard">
+            <a href="{% url "cart"%}"><b><u>Đang xử lý</u></b></a>
+        </div>
+        <div class="col-lg-6 status-yard">
+            <a href="{% url "history"%}">Lịch sử</a>
+        </div>
+    </div>
+
+    <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Sân bóng</th>
+      <th scope="col">Sân</th>
+      <th scope="col">Thời gian</th>
+      <th scope="col">Giá tiền</th>
+      <th scope="col">Tùy chọn</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for cart in cart%}
+    <tr>
+      <th scope="row">{{cart.name}}</th>
+      <td>{{cart.yard}}</td>
+      <td>{{cart.time}}</td>
+      <td>{{cart.cost}}</td>
+      <td>
+        {% include "base/handle_booking.html" %}
+      </td>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+    <p> Tổng tiền: {{total}}vnd</p>{% include "base/payment.html" %}
+</div>
+{% endblock content %}

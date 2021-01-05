@@ -1,0 +1,20 @@
+{% extends "base/index.html" %}
+{% block title %} Xóa thời gian {% endblock %}
+
+{% block content%}
+    <div class="col-lg-9 content">
+        <form method="POST">
+            <div class="card text-center">
+                <div class="card-header">
+                    Bạn có chắc chắn muốn xóa
+                </div>
+                <div>{{time.time}}</div>
+                <div class="card-body">
+                    {% csrf_token %}
+                    <input type="submit" value="Xóa" class="btn btn-danger">
+                    <a href="{% url "create_time" time.yard_id %}" class="btn btn-primary">TTrở về</a>
+                </div>
+                </div>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "base/index.html" %}
+{% block title %} Xử lý đặt sân {% endblock %}
+
+{% block content%}
+    <div class="col-lg-9 content">
+        <div class="row status">
+            <div class="col-lg-3 status-yard">
+                <a href="{% url "manage_booking"%}">Sân xử lý</a>
+            </div>
+            <div class="col-lg-3 status-yard">
+                <a href="{% url "location_accept"%}">Sân xác nhận</a>
+            </div>
+            <div class="col-lg-3 status-yard">
+                <a href="{% url "location_open"%}"><b><u>Sân trống</u></b></a>
+            </div>
+            <div class="col-lg-3 status-yard">
+                <a href="{% url "location_close"%}">Sân đã đóng</a>
+            </div>
+        </div>
+        {% include "manage/add_booking.html" %}
+        <table class="table border-bodered table-manager">
+            <thead>
+            <tr>
+                <th scope="col"> Loại sân</th>
+                <th scope="col"> Ngày </th>
+                <th scope="col"> Giờ </th>
+                <th scope="col"> Trạng thái </th>
+                <th scope="col"> Xử lý </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in booking %}
+            <tr>
+                <td> {{booking.code}} </td>
+                <td> {{booking.date|date:"d-m-Y"}} </td>
+                <td> {{booking.time}} </td>
+                <td> {{booking.status}} </td>
+                <td>
+                    {% include "manage/handle_open.html" %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    </div>
+    <script>
+        var obj = document.getElementById("yard");
+        var id;
+        obj.onchange = function(e) {
+            id = e.target.value;
+            var dataURL = `/manage/timedata/${id}`;
+            $.ajax({
+                method: "GET",
+                url: dataURL
+            }).done(function(data) {
+                return handleAddYard(JSON.parse(data));
+            })
+
+            function handleAddYard(data) {
+                console.log(data);
+                let time = document.getElementById("time");
+                let option = "<select name='drop'>";
+                data.forEach(function(item) {
+                    option += `<option value="${item.pk}">${item.fields.time}</option>`;
+                })
+                option+= "</seclect>"
+                time.innerHTML = option;
+            }
+        }
+    </script>
+{% endblock %}

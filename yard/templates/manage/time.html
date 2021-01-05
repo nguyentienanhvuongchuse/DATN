@@ -1,0 +1,44 @@
+{% extends "base/index.html" %}
+{% block title %} Thời gian {% endblock %}
+
+{% block content%}
+    <div class="col-lg-9 content">
+        <h2>Thêm mới</h2>
+        <hr>
+        <form method="POST">
+            {% csrf_token %}
+            <div>
+                <label>Mã sân</label>
+                {{form.time}}
+            </div>
+            <div>
+                <label>Giá tiền</label>
+                {{form.cost}}
+            </div>
+            <br>
+            <input type="submit" name="Thêm mới" class="btn btn-primary" value="Thêm mới">
+        </form>
+        <hr>
+        <table class="table border-bodered table-manager">
+            <thead>
+                <tr>
+                <th scope="col"> Thời gian </th>
+                <th scope="col"> Giá tiền </th>
+                <th scope="col"> Tùy chọn </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for time in time%}
+                <tr>
+                    <td> {{time.time}} </td>
+                    <td> {{time.cost}} </td>
+                    <td>
+                        <a href="{% url "update_time" time.id%}" class="btn btn-primary"> Sửa </a>
+                        <a href="{% url "delete_time" time.id%}" class="btn btn-danger"> Xóa </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

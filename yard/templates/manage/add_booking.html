@@ -1,0 +1,35 @@
+<a href="#" class="btn btn-primary btn-booking" data-toggle="modal" data-target="#exampleModal">Thêm sân trống</a>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Thêm sân trống</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form method="POST">
+            {% csrf_token %}
+            <label for="yard">Chọn sân:</label>
+            <select name="yard" id="yard">
+                <option> --  -- </option>
+                {% for yard in yard %}
+                <option value="{{yard.id}}">{{yard.code}}</option>
+                {% endfor %}
+            </select>
+
+            <label for="time">Thời gian:</label>
+            <div name="time" id="time">
+
+            </div>
+
+            <input type="date" name="date">
+
+            <input type="submit" value="Thêm mới">
+        </form>
+    </div>
+    </div>
+</div>
+</div>

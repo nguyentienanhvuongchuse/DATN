@@ -1,0 +1,45 @@
+{% extends "base/index.html" %}
+{% block title %} Xử lý đặt sân {% endblock %}
+
+{% block content%}
+    <div class="col-lg-9 content">
+        <div class="row status">
+            <div class="col-lg-3 status-yard">
+                <a href="{% url "manage_booking"%}">Sân xử lý</a>
+            </div>
+            <div class="col-lg-3 status-yard">
+                <a href="{% url "location_accept"%}"><b><u>Sân xác nhận</u></b></a>
+            </div>
+            <div class="col-lg-3 status-yard">
+                <a href="{% url "location_open"%}">Sân trống</a>
+            </div>
+            <div class="col-lg-3 status-yard">
+                <a href="{% url "location_close"%}">Sân đã đóng</a>
+            </div>
+        </div>
+        <table class="table border-bodered table-manager">
+            <thead>
+            <tr>
+                <th scope="col"> Người thuê </th>
+                <th scope="col"> Loại sân </th>
+                <th scope="col"> Giờ </th>
+                <th scope="col"> Thời gian </th>
+                <th scope="col"> Chi tiết </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in booking %}
+            <tr>
+                <td> {{booking.user}} </td>
+                <td> {{booking.code}} </td>
+                <td> {{booking.time}} </td>
+                <td> {{booking.date|date:"d-m-Y"}} </td>
+                <td>
+                    {% include "manage/detail_booking.html" %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    </div>
+{% endblock %}

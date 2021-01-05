@@ -1,0 +1,27 @@
+<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{time.id}}">Đặt sân</a>
+
+<div class="modal fade" id="exampleModal{{time.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Chọn sân</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+            <h5>Mã sân: {{time.code}}</h5>
+            <h5>Loại sân: {{time.type}}</h5>
+            <h5>Thời gian: {{time.time}}</h5>
+            <h5>Giá tiền: {{time.cost}}</h5>
+            <br>
+            <form method="POST">
+                {% csrf_token %}
+                <input type="hidden" value="{{time.booking_id}}" name="booking_id">
+                <input type="hidden" value="XL" name="handle">
+                <input type="submit" value="Đặt sân" class="btn btn-success">
+            </form>
+    </div>
+    </div>
+</div>
+</div>

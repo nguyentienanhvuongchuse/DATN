@@ -1,0 +1,19 @@
+{% extends "base/index.html"%}
+{% block title %} Đổi mật khẩu {% endblock title%}
+{% block content %}
+<div class="col-lg-9">
+    <form method="POST" id="signup_form">
+        {% csrf_token %}
+        <h3 class="title-header">Đổi mật khẩu</h3>
+        <div class="form-wrapper">
+            <label for="">Mật khẩu</label>
+            <input type="password" class="form-control" name="password" id="pw">
+        </div>
+        <div class="form-wrapper">
+            <label for="">Nhập lại mật khẩu</label>
+            <input type="password" class="form-control" name="password2">
+        </div>
+        <input type="submit" class="signup" value="Đổi mật khẩu">
+    </form>
+</div>
+{% endblock content %}
